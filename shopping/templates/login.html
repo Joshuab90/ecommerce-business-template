@@ -1,0 +1,34 @@
+{% load static %}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link href='{% static "login.css" %}' rel="stylesheet">
+
+<div>
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="{% url 'signup' %}">Signup</a>
+                    <a class="navbar-brand" href="{% url 'login' %}">Login</a>
+                </div>
+                    <ul class="nav navbar-nav">
+                        <li class={% if page == 'home' %} "active" {% endif %}><a href="{% url 'index' %}">Home</a></li>
+                        {% if user %}
+                        <li class={% if page == 'cart' %} "active" {% endif %}><a href="{% url 'cart' %}">Shopping Cart
+                            {% if items > 0 %}
+                                <button type="button" class="btn btn-danger btn-xs">{{ items }}</button>
+                            {% endif %} </a></li>
+                        {% endif %}
+                     </ul>
+                </div>
+
+<div class="wrapper">
+    <form method='post' action="" class="form-signin">{% csrf_token %}
+        <h2 class="form-signin-heading">Please login</h2>
+        <input type="text" class="form-control" name="username" placeholder="Username" required="" autofocus=""/>
+        <br>
+        <input type="password" class="form-control" name="password" placeholder="Password" required=""/>
+        <br>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+        <br>
+        <a href="{% url 'signup' %}" class="btn btn-lg btn-success btn-block">Sign Up</a>
+    </form>
+</div>

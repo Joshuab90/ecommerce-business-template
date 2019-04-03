@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block content %}
+
+<div class="row">
+    {% for product in products %}
+    <div class="col-md-6 col-centered">
+    <img style="width: 30%;display:block;margin:0 auto;" src="{% static "go.gif" %}">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-4">
+            <p>{{ product.title }}</p>
+            <p>{{ product.description }}</p>
+        </div>
+        <div class="col-md-2"></div>
+        <div class="col-md-2">
+            <a href="{% url 'add_to_cart' %}?product_id={{ product.id }}" class="btn btn-success" role="button">Add to Cart</a>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>
+    {% endfor %}
+    </div>
+{% endblock %}
